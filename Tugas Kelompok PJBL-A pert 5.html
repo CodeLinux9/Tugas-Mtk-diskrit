@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+  <title>SetClassify - Application PJBL-A</title>
+
+  <!-- Google Fonts & Icons -->
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#0284c7",
+            "primary-dark": "#0369a1",
+            "primary-container": "#e0f2fe",
+            "on-primary": "#ffffff",
+            "background": "#f0f7ff",
+            "surface": "#ffffff",
+            "surface-container": "#ffffff",
+            "surface-container-high": "#e0f2fe",
+            "surface-muted": "#f1f5f9",
+            "on-surface": "#0f172a",
+            "on-surface-variant": "#475569",
+            "outline": "#94a3b8",
+            "border-subtle": "#e2e8f0",
+            "danger": "#ef4444",
+            "error-container": "#fee2e2",
+            "set-u-bg": "#f1f5f9",
+            "set-u-text": "#475569",
+            "set-a-bg": "#e0f2fe",
+            "set-a-text": "#0369a1",
+            "set-b-bg": "#dbeafe",
+            "set-b-text": "#1d4ed8",
+            "set-c-bg": "#ede9fe",
+            "set-c-text": "#6d28d9"
+          },
+          fontFamily: {
+            "headline-lg": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "label-badge": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "label-lg": ["Plus Jakarta Sans"],
+            "headline-xl-mobile": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "headline-xl": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "label-stat": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "mono": ["JetBrains Mono"]
+          },
+          fontSize: {
+            "headline-lg": ["22px", { "lineHeight": "30px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "headline-md": ["18px", { "lineHeight": "26px", "fontWeight": "600" }],
+            "label-badge": ["12px", { "lineHeight": "14px", "fontWeight": "700" }],
+            "label-md": ["11px", { "lineHeight": "16px", "letterSpacing": "0.06em", "fontWeight": "700" }],
+            "label-lg": ["13px", { "lineHeight": "18px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "headline-xl-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }],
+            "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+            "headline-xl": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "headline-sm": ["15px", { "lineHeight": "22px", "fontWeight": "600" }],
+            "label-stat": ["24px", { "lineHeight": "28px", "fontWeight": "700" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    @layer base {
+      html, body {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        overscroll-behavior-y: none;
+        -webkit-tap-highlight-color: transparent;
+        min-height: max(884px, 100dvh);
+      }
+      .pb-safe { padding-bottom: env(safe-area-inset-bottom, 0px); }
+      .pt-safe { padding-top: env(safe-area-inset-top, 0px); }
+    }
+    ::-webkit-scrollbar { display: none; }
+  </style>
+</head>
+<body class="bg-background text-on-surface antialiased">
+
+  <!-- ==================== HALAMAN 1: DASHBOARD ==================== -->
+  <div id="page-dashboard" class="page-block">
+    <header class="fixed top-0 w-full z-50 pt-safe bg-white/90 backdrop-blur-xl border-b border-sky-100 shadow-sm">
+      <div class="h-16 px-4 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <button aria-label="Menu Utama" class="w-11 h-11 flex items-center justify-center rounded-lg text-slate-600 hover:bg-sky-50 transition-colors">
+            <span class="material-symbols-outlined text-[24px]">menu</span>
+          </button>
+          <h1 class="font-headline-md text-headline-md text-slate-900 tracking-tight select-none">Dashboard</h1>
+        </div>
+        <div class="flex items-center gap-2">
+          <div class="inline-flex items-center px-2.5 py-1 rounded-full bg-sky-50 text-sky-700 font-label-badge border border-sky-200">
+            <span class="w-1.5 h-1.5 rounded-full bg-sky-500 mr-1.5 animate-pulse"></span>
+            <span>15 data</span>
+          </div>
+          <div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center">
+            <span class="material-symbols-outlined text-[18px]">person</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="flex-1 w-full pt-20 pb-28">
+      <div class="flex flex-col w-full px-4 pb-6 gap-4 select-none">
+        <section class="flex flex-col gap-1.5 pt-2">
+          <div class="inline-flex items-center gap-1.5 self-start px-2.5 py-1 rounded-full bg-sky-100 text-sky-800 text-label-md font-label-md border border-sky-200">
+            <span class="material-symbols-outlined text-[14px]">school</span>
+            <span>PJBL-A Matematika Diskrit</span>
+          </div>
+          <h2 class="font-headline-xl-mobile text-headline-xl-mobile text-slate-900 tracking-tight mt-1">
+            Selamat Datang di SetClassify
+          </h2>
+          <p class="font-body-md text-body-md text-slate-600 leading-relaxed">
+            Sistem klasifikasi data mahasiswa menggunakan konsep himpunan dalam Matematika Diskrit.
+          </p>
+        </section>
+
+        <!-- Metric Cards -->
+        <section class="grid grid-cols-2 gap-3">
+          <div class="flex flex-col justify-between p-3.5 rounded-xl bg-white border border-sky-100 shadow-sm">
+            <div class="flex items-center gap-2.5">
+              <div class="w-9 h-9 rounded-lg bg-slate-100 flex items-center justify-center shrink-0">
+                <span class="font-headline-md text-headline-md text-slate-700 font-bold">U</span>
+              </div>
+              <div class="flex flex-col min-w-0">
+                <span class="font-label-md text-label-md text-slate-500 uppercase tracking-wider truncate">Total Dataset</span>
+                <span class="font-label-stat text-label-stat text-slate-900 mt-0.5 leading-none">15</span>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-col justify-between p-3.5 rounded-xl bg-white border border-sky-100 shadow-sm">
+            <div class="flex items-center gap-2.5">
+              <div class="w-9 h-9 rounded-lg bg-sky-100 flex items-center justify-center shrink-0">
+                <span class="font-headline-md text-headline-md text-sky-700 font-bold">A</span>
+              </div>
+              <div class="flex flex-col min-w-0">
+                <span class="font-label-md text-label-md text-slate-500 uppercase tracking-wider truncate">Himpunan A</span>
+                <span class="font-label-stat text-label-stat text-slate-900 mt-0.5 leading-none">10</span>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-col justify-between p-3.5 rounded-xl bg-white border border-sky-100 shadow-sm">
+            <div class="flex items-center gap-2.5">
+              <div class="w-9 h-9 rounded-lg bg-teal-50 flex items-center justify-center shrink-0">
+                <span class="font-headline-md text-headline-md text-teal-700 font-bold">B</span>
+              </div>
+              <div class="flex flex-col min-w-0">
+                <span class="font-label-md text-label-md text-slate-500 uppercase tracking-wider truncate">Himpunan B</span>
+                <span class="font-label-stat text-label-stat text-slate-900 mt-0.5 leading-none">11</span>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-col justify-between p-3.5 rounded-xl bg-white border border-sky-100 shadow-sm">
+            <div class="flex items-center gap-2.5">
+              <div class="w-9 h-9 rounded-lg bg-indigo-50 flex items-center justify-center shrink-0">
+                <span class="font-headline-md text-headline-md text-indigo-700 font-bold">C</span>
+              </div>
+              <div class="flex flex-col min-w-0">
+                <span class="font-label-md text-label-md text-slate-500 uppercase tracking-wider truncate">Himpunan C</span>
+                <span class="font-label-stat text-label-stat text-slate-900 mt-0.5 leading-none">11</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Card Operasi Terakhir -->
+        <section class="rounded-xl bg-white border border-sky-100 p-4 shadow-sm flex flex-col gap-2.5">
+          <div class="flex items-center justify-between border-b border-sky-100 pb-2">
+            <div class="flex items-center gap-2">
+              <div class="w-7 h-7 rounded-lg bg-sky-100 flex items-center justify-center text-sky-700">
+                <span class="material-symbols-outlined text-[18px]">history</span>
+              </div>
+              <h3 class="font-headline-sm text-headline-sm text-slate-900">Operasi Terakhir</h3>
+            </div>
+            <span class="inline-flex items-center gap-1 text-[11px] font-label-md text-slate-500 bg-slate-100 px-2 py-0.5 rounded-full">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+              Baru saja
+            </span>
+          </div>
+          <div class="p-3 rounded-lg bg-sky-50/70 border border-sky-100 flex flex-col gap-2">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="px-2 py-0.5 rounded bg-white border border-sky-200 text-sky-700 font-bold text-headline-sm">A &#8745; B</span>
+                <span class="font-body-sm text-body-sm text-slate-700 font-semibold">Irisan Himpunan</span>
+              </div>
+              <span class="px-2.5 py-0.5 rounded-full bg-sky-600 text-white font-label-badge">15 Mahasiswa</span>
+            </div>
+            <p class="font-body-sm text-[12px] text-slate-600 leading-snug">
+              Mahasiswa berprestasi akademis tinggi (&ge; 80) <strong>DAN</strong> aktif berkontribusi dalam organisasi.
+            </p>
+          </div>
+        </section>
+
+        <!-- Button Kelola Dataset -->
+        <button onclick="navigateTo('dataset')" class="inline-flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-lg bg-sky-600 hover:bg-sky-700 text-white font-headline-sm shadow-sm transition-all">
+          <span>Kelola Dataset Lengkap</span>
+          <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+        </button>
+      </div>
+    </main>
+  </div>
+
+  <!-- ==================== HALAMAN 2: DATASET ==================== -->
+  <div id="page-dataset" class="page-block hidden">
+    <header class="fixed top-0 w-full z-50 pt-safe bg-surface/90 backdrop-blur-xl border-b border-sky-100 shadow-sm">
+      <div class="h-16 px-4 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <button class="w-11 h-11 flex items-center justify-center rounded-lg text-on-surface-variant hover:bg-sky-50 transition-colors">
+            <span class="material-symbols-outlined text-[24px]">menu</span>
+          </button>
+          <h1 class="font-headline-md text-headline-md text-on-surface tracking-tight select-none">Dataset Mahasiswa</h1>
+        </div>
+        <div class="flex items-center gap-2">
+          <div class="inline-flex items-center px-2.5 py-1 rounded-full bg-sky-50 text-primary font-label-badge border border-sky-200/80">
+            <span class="w-1.5 h-1.5 rounded-full bg-primary mr-1.5 animate-pulse"></span>
+            <span>15 data</span>
+          </div>
+          <div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center shadow-sm">
+            <span class="material-symbols-outlined text-[18px]">person</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="flex-1 w-full bg-background pt-20 pb-28">
+      <div class="flex flex-col w-full px-4 pb-8 gap-4">
+        <section class="flex flex-col gap-1.5 pt-1">
+          <div class="flex items-center gap-2">
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-sky-100 text-sky-800 font-label-badge border border-sky-200">
+              <span class="material-symbols-outlined text-[14px]">school</span>
+              PJBL-A Matematika Diskrit
+            </span>
+            <span class="inline-flex items-center px-2 py-0.5 rounded-full bg-white text-slate-600 border border-slate-200 font-label-badge">
+              Semesta U (15)
+            </span>
+          </div>
+          <h2 class="font-headline-xl-mobile text-headline-xl-mobile text-on-surface tracking-tight">
+            Dataset Mahasiswa
+          </h2>
+          <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+            Kelola data mahasiswa sebagai semesta himpunan (U) dan evaluasi keanggotaan dalam Himpunan A, B, dan C berdasarkan aturan logika predikat.
+          </p>
+        </section>
+
+        <!-- Kriteria Quick Reference -->
+        <section class="rounded-xl bg-surface border border-sky-200/70 shadow-sm p-3.5 flex flex-col gap-2.5">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-1.5 text-primary font-headline-sm text-headline-sm">
+              <span class="material-symbols-outlined text-[18px]">rule</span>
+              <span>Aturan Keanggotaan</span>
+            </div>
+            <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Kriteria Logika</span>
+          </div>
+          <div class="grid grid-cols-3 gap-2">
+            <div class="flex flex-col p-2 rounded-lg bg-sky-50 border border-sky-100">
+              <div class="flex items-center gap-1">
+                <span class="w-4 h-4 rounded-full bg-primary text-white text-[10px] font-bold flex items-center justify-center">A</span>
+                <span class="font-label-badge text-sky-800">Nilai</span>
+              </div>
+              <span class="font-label-lg font-bold text-sky-700 mt-0.5">&ge; 80</span>
+            </div>
+            <div class="flex flex-col p-2 rounded-lg bg-teal-50 border border-teal-100">
+              <div class="flex items-center gap-1">
+                <span class="w-4 h-4 rounded-full bg-teal-600 text-white text-[10px] font-bold flex items-center justify-center">B</span>
+                <span class="font-label-badge text-teal-800">Organisasi</span>
+              </div>
+              <span class="font-label-lg font-bold text-teal-700 mt-0.5">Aktif</span>
+            </div>
+            <div class="flex flex-col p-2 rounded-lg bg-indigo-50 border border-indigo-100">
+              <div class="flex items-center gap-1">
+                <span class="w-4 h-4 rounded-full bg-indigo-600 text-white text-[10px] font-bold flex items-center justify-center">C</span>
+                <span class="font-label-badge text-indigo-800">Hadir</span>
+              </div>
+              <span class="font-label-lg font-bold text-indigo-700 mt-0.5">&ge; 80%</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Search Input -->
+        <div class="relative w-full">
+          <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span>
+          <input class="w-full h-11 pl-10 pr-3 rounded-lg bg-surface border border-sky-200/80 text-on-surface font-body-md focus:outline-none focus:border-primary" id="search-input" placeholder="Cari nama atau NIM..." type="text"/>
+        </div>
+
+        <!-- Filter Chips -->
+        <div class="flex items-center gap-1.5 overflow-x-auto py-1 no-scrollbar -mx-4 px-4">
+          <button class="filter-chip active flex-shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary text-white font-headline-sm text-headline-sm shadow-sm transition-all" data-filter="all">
+            <span>Semua</span>
+            <span class="px-1.5 py-0.2 rounded-full bg-white/20 text-xs">15</span>
+          </button>
+          <button class="filter-chip flex-shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-sky-200/80 text-sky-800 font-headline-sm text-headline-sm shadow-sm transition-all" data-filter="A">
+            <span class="w-2 h-2 rounded-full bg-primary"></span>
+            <span>Himpunan A</span>
+          </button>
+          <button class="filter-chip flex-shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-sky-200/80 text-teal-800 font-headline-sm text-headline-sm shadow-sm transition-all" data-filter="B">
+            <span class="w-2 h-2 rounded-full bg-teal-600"></span>
+            <span>Himpunan B</span>
+          </button>
+          <button class="filter-chip flex-shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-sky-200/80 text-indigo-800 font-headline-sm text-headline-sm shadow-sm transition-all" data-filter="C">
+            <span class="w-2 h-2 rounded-full bg-indigo-600"></span>
+            <span>Himpunan C</span>
+          </button>
+        </div>
+
+        <!-- Student Cards List (15 Mahasiswa) -->
+        <section class="flex flex-col gap-3" id="student-list">
+          <!-- Mahasiswa 1 -->
+          <article class="student-card flex flex-col p-3.5 rounded-xl bg-white border border-sky-100 shadow-sm gap-3" data-name="Faras Setia Ansyarullah" data-nim="25210233" data-sets="A B C">
+            <div class="flex items-start justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-sky-100 text-primary border border-sky-200 flex items-center justify-center font-headline-md font-bold">
+                  FSA
+                </div>
+                <div class="flex flex-col">
+                  <span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Faras Setia Ansyarullah</span>
+                  <span class="font-body-sm text-body-sm text-on-surface-variant">NIM: 25210233</span>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid-cols-3 gap-1.5 py-2 px-2.5 rounded-lg bg-sky-50/70 border border-sky-100/60 text-xs">
+              <div class="flex flex-col"><span class="text-on-surface-variant text-[11px]">Nilai Akhir</span><span class="font-bold text-on-surface">92</span></div>
+              <div class="flex flex-col"><span class="text-on-surface-variant text-[11px]">Organisasi</span><span class="font-semibold text-teal-600">Ya</span></div>
+              <div class="flex flex-col"><span class="text-on-surface-variant text-[11px]">Kehadiran</span><span class="font-bold text-on-surface">92%</span></div>
+            </div>
+            <div class="flex items-center justify-between pt-1 border-t border-slate-100">
+              <span class="text-[11px] font-medium text-on-surface-variant">Keanggotaan:</span>
+              <div class="flex items-center gap-1.5">
+                <span class="px-2 py-0.5 rounded-md bg-sky-100 text-sky-700 font-label-badge font-bold">A</span>
+                <span class="px-2 py-0.5 rounded-md bg-teal-100 text-teal-700 font-label-badge font-bold">B</span>
+                <span class="px-2 py-0.5 rounded-md bg-indigo-100 text-indigo-700 font-label-badge font-bold">C</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Mahasiswa 2 -->
+          <article class="student-card flex flex-col p-3.5 rounded-xl bg-white border border-sky-100 shadow-sm gap-3" data-name="Asyhadul Amin" data-nim="25210113" data-sets="A B C">
+            <div class="flex items-start justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-blue-100 text-blue-700 border border-blue-200 flex items-center justify-center font-headline-md font-bold">
+                  AA
+                </div>
+                <div class="flex flex-col">
+                  <span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Asyhadul Amin</span>
+                  <span class="font-body-sm text-body-sm text-on-surface-variant">NIM: 25210113</span>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid-cols-3 gap-1.5 py-2 px-2.5 rounded-lg bg-sky-50/70 border border-sky-100/60 text-xs">
+              <div class="flex flex-col"><span class="text-on-surface-variant text-[11px]">Nilai Akhir</span><span class="font-bold text-on-surface">93</span></div>
+              <div class="flex flex-col"><span class="text-on-surface-variant text-[11px]">Organisasi</span><span class="font-semibold text-teal-600">Ya</span></div>
+              <div class="flex flex-col"><span class="text-on-surface-variant text-[11px]">Kehadiran</span><span class="font-bold text-on-surface">94%%</span></div>
+            </div>
+            <div class="flex items-center justify-between pt-1 border-t border-slate-100">
+              <span class="text-[11px] font-medium text-on-surface-variant">Keanggotaan:</span>
+              <div class="flex items-center gap-1.5">
+                <span class="px-2 py-0.5 rounded-md bg-sky-100 text-sky-700 font-label-badge font-bold">A</span>
+                <span class="px-2 py-0.5 rounded-md bg-teal-100 text-teal-700 font-label-badge font-bold">B</span>
+                <span class="px-2 py-0.5 rounded-md bg-indigo-100 text-indigo-700 font-label-badge font-bold">C</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Mahasiswa 3 -->
+          <article class="student-card flex flex-col p-3.5 rounded-xl bg-white border border-sky-100 shadow-sm gap-3" data-name="Aris Akmal" data-nim="25210080" data-sets="A C">
+            <div class="flex items-start justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-sky-100 text-sky-800 border border-sky-200 flex items-center justify-center font-headline-md font-bold">
+                  AA
+                </div>
+                <div class="flex flex-col">
+                  <span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Aris Akmal</span>
+                  <span class="font-body-sm text-body-sm text-on-surface-variant">NIM: 25210080</span>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid-cols-3 gap-1.5 py-2 px-2.5 rounded-lg bg-sky-50/70 border border-sky-100/60 text-xs">
+              <div class="flex flex-col"><span class="text-on-surface-variant text-[11px]">Nilai Akhir</span><span class="font-bold text-on-surface">93</span></div>
+              <div class="flex flex-col"><span class="text-on-surface-variant text-[11px]">Organisasi</span><span class="font-semibold text-slate-500">tidak</span></div>
+              <div class="flex flex-col"><span class="text-on-surface-variant text-[11px]">Kehadiran</span><span class="font-bold text-on-surface">93%</span></div>
+            </div>
+            <div class="flex items-center justify-between pt-1 border-t border-slate-100">
+              <span class="text-[11px] font-medium text-on-surface-variant">Keanggotaan:</span>
+              <div class="flex items-center gap-1.5">
+                <span class="px-2 py-0.5 rounded-md bg-sky-100 text-sky-700 font-label-badge font-bold">A</span>
+                <span class="px-2 py-0.5 rounded-md bg-slate-100 text-slate-400 font-label-badge line-through">B</span>
+                <span class="px-2 py-0.5 rounded-md bg-indigo-100 text-indigo-700 font-label-badge font-bold">C</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Mahasiswa 4 -->
+          <article class="student-card flex flex-col p-3.5 rounded-xl bg-white border border-sky-100 shadow-sm gap-3" data-name="Muhammad Yunus" data-nim="25210032" data-sets="A B C">
+            <div class="flex items-start justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200 flex items-center justify-center font-headline-md font-bold">
+                  MY
+                </div>
+                <div class="flex flex-col">
+                  <span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Muhammad Yunus</span>
+                  <span class="font-body-sm text-body-sm text-on-surface-variant">NIM: 25210032</span>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid-cols-3 gap-1.5 py-2 px-2.5 rounded-lg bg-sky-50/70 border border-sky-100/60 text-xs">
+              <div class="flex flex-col"><span class="text-on-surface-variant text-[11px]">Nilai Akhir</span><span class="font-bold text-on-surface">86</span></div>
+              <div class="flex flex-col"><span class="text-on-surface-variant text-[11px]">Organisasi</span><span class="font-semibold text-teal-600">Ya</span></div>
+              <div class="flex flex-col"><span class="text-on-surface-variant text-[11px]">Kehadiran</span><span class="font-bold text-on-surface">89%</span></div>
+            </div>
+            <div class="flex items-center justify-between pt-1 border-t border-slate-100">
+              <span class="text-[11px] font-medium text-on-surface-variant">Keanggotaan:</span>
+              <div class="flex items-center gap-1.5">
+                <span class="px-2 py-0.5 rounded-md bg-sky-100 text-sky-700 font-label-badge font-bold">A</span>
+                <span class="px-2 py-0.5 rounded-md bg-teal-100 text-teal-700 font-label-badge font-bold">B</span>
+                <span class="px-2 py-0.5 rounded-md bg-indigo-100 text-indigo-700 font-label-badge font-bold">C</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Mahasiswa 5 -->
+          <article class="student-card flex flex-col p-3.5 rounded-xl bg-white border border-sky-100 shadow-sm gap-3" data-name="Jelita" data-nim="25210021" data-sets="A B">
+            <div class="flex items-start justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-purple-100 text-purple-700 border border-purple-200 flex items-center justify-center font-headline-md font-bold">
+                  J
+                </div>
+                <div class="flex flex-col">
+                  <span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Jelita</span>
+                  <span class="font-body-sm text-body-sm text-on-surface-variant">NIM: 25210021</span>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid-cols-3 gap-1.5 py-2 px-2.5 rounded-lg bg-sky-50/70 border border-sky-100/60 text-xs">
+              <div class="flex flex-col"><span class="text-on-surface-variant text-[11px]">Nilai Akhir</span><span class="font-bold text-on-surface">84</span></div>
+              <div class="flex flex-col"><span class="text-on-surface-variant text-[11px]">Organisasi</span><span class="font-semibold text-teal-600">ya</span></div>
+              <div class="flex flex-col"><span class="text-on-surface-variant text-[11px]">Kehadiran</span><span class="font-bold text-on-surface">79%</span></div>
+            </div>
+            <div class="flex items-center justify-between pt-1 border-t border-slate-100">
+              <span class="text-[11px] font-medium text-on-surface-variant">Keanggotaan:</span>
+              <div class="flex items-center gap-1.5">
+                <span class="px-2 py-0.5 rounded-md bg-sky-100 text-sky-700 font-label-badge font-bold">A</span>
+                <span class="px-2 py-0.5 rounded-md bg-teal-100 text-teal-700 font-label-badge font-bold">B</span>
+                <span class="px-2 py-0.5 rounded-md bg-slate-100 text-slate-400 font-label-badge line-through">C</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Mahasiswa 6 -->
+          <article class="student-card flex flex-col p-3.5 rounded-xl bg-white border border-sky-100 shadow-sm gap-3" data-name="Aminatun Alda" data-nim="25210113" data-sets="A B C">
+            <div class="flex items-start justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-pink-100 text-pink-700 border border-pink-200 flex items-center justify-center font-headline-md font-bold">
+                  AA
+                </div>
+                <div class="flex flex-col">
+                  <span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Aminatul Alda</span>
+                  <span class="font-body-sm text-body-sm text-on-surface-variant">NIM: 25210113</span>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid-cols-3 gap-1.5 py-2 px-2.5 rounded-lg bg-sky-50/70 border border-sky-100/60 text-xs">
+              <div class="flex flex-col"><span class="text-on-surface-variant text-[11px]">Nilai Akhir</span><span class="font-bold text-on-surface">80</span></div>
+              <div class="flex flex-col"><span class="text-on-surface-variant text-[11px]">Organisasi</span><span class="font-semibold text-teal-600">Ya</span></div>
+              <div class="flex flex-col"><span class="text-on-surface-variant text-[11px]">Kehadiran</span><span class="font-bold text-on-surface">80%</span></div>
+            </div>
+            <div class="flex items-center justify-between pt-1 border-t border-slate-100">
+              AA
+              <span class="text-[11px] font-medium text-on-surface-variant">Keanggotaan:</span>
+              <div class="flex items-center gap-1.5">
+                <span class="px-2 py-0.5 rounded-md bg-sky-100 text-sky-700 font-label-badge font-bold">A</span>
+                <span class="px-2 py-0.5 rounded-md bg-teal-100 text-teal-700 font-label-badge font-bold">B</span>
+                <span class="px-2 py-0.5 rounded-md bg-indigo-100 text-indigo-700 font-label-badge font-bold">C</span>
+              </div>
+            </div>
+          </article>
+          <!-- Mahasiswa 7 -->
+          <article class="student-card flex flex-col p-3.5 rounded-xl bg-white border border-sky-100 shadow-sm gap-3" data-name="Askal Fata" data-nim="25210471" data-sets="A B C">
+            <div class="flex items-start justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-pink-100 text-pink-700 border border-pink-200 flex items-center justify-center font-headline-md font-bold">
+                  AF
+                </div>
+                <div class="flex flex-col">
+                  <span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Askal Fata</span>
+                  <span class="font-body-sm text-body-sm text-on-surface-variant">NIM: 25210471</span>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid-cols-3 gap-1.5 py-2 px-2.5 rounded-lg bg-sky-50/70 border border-sky-100/60 text-xs">
+              <div class="flex flex-col"><span class="text-on-surface-variant text-[11px]">Nilai Akhir</span><span class="font-bold text-on-surface">78</span></div>
+              <div class="flex flex-col"><span class="text-on-surface-variant text-[11px]">Organisasi</span><span class="font-semibold text-teal-600">tidak</span></div>
+              <div class="flex flex-col"><span class="text-on-surface-variant text-[11px]">Kehadiran</span><span class="font-bold text-on-surface">78%</span></div>
+            </div>
+            <div class="flex items-center justify-between pt-1 border-t border-slate-100">
+              AA
+              <span class="text-[11px] font-medium text-on-surface-variant">Keanggotaan:</span>
+              <div class="flex items-center gap-1.5"> 
+                <span class="px-2 py-0.5 rounded-md bg-sky-100 text-sky-700 font-label-badge font-bold">A</span>
+                <span class="px-2 py-0.5 rounded-md bg-slate-100 text-slate-400 font-label-badge line-through">B</span>
+                <span class="px-2 py-0.5 rounded-md bg-indigo-100 text-indigo-700 font-label-badge font-bold">C</span>
+              </div>
+            </div>
+          </article>
+          <!-- Mahasiswa 8 -->
+          <article class="student-card flex flex-col p-3.5 rounded-xl bg-white border border-sky-100 shadow-sm gap-3" data-name="Iman Zandra" data-nim="25210387" data-sets="A B C">
+            <div class="flex items-start justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-pink-100 text-pink-700 border border-pink-200 flex items-center justify-center font-headline-md font-bold">IZ
+                </div>
+                <div class="flex flex-col">
+                  <span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Iman Zandra</span>
+                  <span class="font-body-sm text-body-sm text-on-surface-variant">NIM: 25210387</span>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid-cols-3 gap-1.5 py-2 px-2.5 rounded-lg bg-sky-50/70 border border-sky-100/60 text-xs">
+              <div class="flex flex-col"><span class="text-on-surface-variant text-[11px]">Nilai Akhir</span><span class="font-bold text-on-surface">79</span></div>
+              <div class="flex flex-col"><span class="text-on-surface-variant text-[11px]">Organisasi</span><span class="font-semibold text-teal-600">Ya</span></div>
+              <div class="flex flex-col"><span class="text-on-surface-variant text-[11px]">Kehadiran</span><span class="font-bold text-on-surface">70%</span></div>
+            </div>
+            <div class="flex items-center justify-between pt-1 border-t border-slate-100">
+              IZ
+              <span class="text-[11px] font-medium text-on-surface-variant">Keanggotaan:</span>
+              <div class="flex items-center gap-1.5">
+                <span class="px-2 py-0.5 rounded-md bg-slate-100 text-slate-400 font-label-badge line-through">A</span>
+                <span class="px-2 py-0.5 rounded-md bg-teal-100 text-teal-700 font-label-badge font-bold">B</span>
+                <span class="px-2 py-0.5 rounded-md bg-slate-100 text-slate-400 font-label-badge line-through">C</span>
+              </div>
+            </div>
+          </article>
+          <!-- Mahasiswa 9 -->
+          <article class="student-card flex flex-col p-3.5 rounded-xl bg-white border border-sky-100 shadow-sm gap-3" data-name="Habibah" data-nim="25210361" data-sets="A B C">
+            <div class="flex items-start justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-pink-100 text-pink-700 border border-pink-200 flex items-center justify-center font-headline-md font-bold">H
+                </div>
+                <div class="flex flex-col">
+                  <span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Habibah</span>
+                  <span class="font-body-sm text-body-sm text-on-surface-variant">NIM: 25210361</span>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid-cols-3 gap-1.5 py-2 px-2.5 rounded-lg bg-sky-50/70 border border-sky-100/60 text-xs">
+              <div class="flex flex-col"><span class="text-on-surface-variant text-[11px]">Nilai Akhir</span><span class="font-bold text-on-surface">75</span></div>
+              <div class="flex flex-col"><span class="text-on-surface-variant text-[11px]">Organisasi</span><span class="font-semibold text-teal-600">Ya</span></div>
+              <div class="flex flex-col"><span class="text-on-surface-variant text-[11px]">Kehadiran</span><span class="font-bold text-on-surface">65%</span></div>
+            </div>
+            <div class="flex items-center justify-between pt-1 border-t border-slate-100">
+              <span class="text-[11px] font-medium text-on-surface-variant">Keanggotaan:</span>
+              <div class="flex items-center gap-1.5">
+                <span class="px-2 py-0.5 rounded-md bg-sky-100 text-slate-400 font-label-badge line-through">A</span>
+                <span class="px-2 py-0.5 rounded-md bg-slate-100 text-indigo-700 font-label-badge font-bold">B</span>
+                <span class="px-2 py-0.5 rounded-md bg-indigo-100 text-slate-400 font-label-badge line-through">C</span>
+              </div>
+            </div>
+          </article>
+          <!-- Mahasiswa 10 -->
+          <article class="student-card flex flex-col p-3.5 rounded-xl bg-white border border-sky-100 shadow-sm gap-3" data-name="Era Rizkiani" data-nim="25210382" data-sets="A B C">
+            <div class="flex items-start justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-pink-100 text-pink-700 border border-pink-200 flex items-center justify-center font-headline-md font-bold">ER
+                </div>
+                <div class="flex flex-col">
+                  <span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Era Rizkiani</span>
+                  <span class="font-body-sm text-body-sm text-on-surface-variant">NIM: 25210382</span>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid-cols-3 gap-1.5 py-2 px-2.5 rounded-lg bg-sky-50/70 border border-sky-100/60 text-xs">
+              <div class="flex flex-col"><span class="text-on-surface-variant text-[11px]">Nilai Akhir</span><span class="font-bold text-on-surface">78</span></div>
+              <div class="flex flex-col"><span class="text-on-surface-variant text-[11px]">Organisasi</span><span class="font-semibold text-teal-600">ya</span></div>
+              <div class="flex flex-col"><span class="text-on-surface-variant text-[11px]">Kehadiran</span><span class="font-bold text-on-surface">76%</span></div>
+            </div>
+            <div class="flex items-center justify-between pt-1 border-t border-slate-100">
+              <span class="text-[11px] font-medium text-on-surface-variant">Keanggotaan:</span>
+              <div class="flex items-center gap-1.5">
+                <span class="px-2 py-0.5 rounded-md bg-slate-100 text-slate-400 font-label-badge line-through">A</span>
+                <span class="px-2 py-0.5 rounded-md bg-teal-100 text-teal-700 font-label-badge font-bold">B</span>
+                <span class="px-2 py-0.5 rounded-md bg-slate-100 text-slate-400 font-label-badge line-through">C</span>
+              </div>
+            </div>
+          </article>
+          <!-- Mahasiswa 11 -->
+          <article class="student-card flex flex-col p-3.5 rounded-xl bg-white border border-sky-100 shadow-sm gap-3" data-name="Muhammad Fadhil" data-nim="25210360" data-sets="A B C">
+            <div class="flex items-start justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-pink-100 text-pink-700 border border-pink-200 flex items-center justify-center font-headline-md font-bold">MF
+                </div>
+                <div class="flex flex-col">
+                  <span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Muhammad Fadhil</span>
+                  <span class="font-body-sm text-body-sm text-on-surface-variant">NIM: 25210360</span>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid-cols-3 gap-1.5 py-2 px-2.5 rounded-lg bg-sky-50/70 border border-sky-100/60 text-xs">
+              <div class="flex flex-col"><span class="text-on-surface-variant text-[11px]">Nilai Akhir</span><span class="font-bold text-on-surface">69</span></div>
+              <div class="flex flex-col"><span class="text-on-surface-variant text-[11px]">Organisasi</span><span class="font-semibold text-teal-600">tidak</span></div>
+              <div class="flex flex-col"><span class="text-on-surface-variant text-[11px]">Kehadiran</span><span class="font-bold text-on-surface">87%</span></div>
+            </div>
+            <div class="flex items-center justify-between pt-1 border-t border-slate-100">
+              <span class="text-[11px] font-medium text-on-surface-variant">Keanggotaan:</span>
+              <div class="flex items-center gap-1.5">
+                <span class="px-2 py-0.5 rounded-md bg-slate-100 text-slate-400 font-label-badge line-through">A</span>
+                <span class="px-2 py-0.5 rounded-md bg-slate-100 text-slate-400 font-label-badge line-through">B</span>
+                <span class="px-2 py-0.5 rounded-md bg-indigo-100 text-indigo-700 font-label-badge font-bold">C</span>
+              </div>
+            </div>
+          </article>
+          <!-- Mahasiswa 12 -->
+          <article class="student-card flex flex-col p-3.5 rounded-xl bg-white border border-sky-100 shadow-sm gap-3" data-name="Rindi Saskia" data-nim="25210235" data-sets="A B C">
+            <div class="flex items-start justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-pink-100 text-pink-700 border border-pink-200 flex items-center justify-center font-headline-md font-bold">RS
+                </div>
+                <div class="flex flex-col">
+                  <span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Rindi Saskia</span>
+                  <span class="font-body-sm text-body-sm text-on-surface-variant">NIM: 25210235</span>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid-cols-3 gap-1.5 py-2 px-2.5 rounded-lg bg-sky-50/70 border border-sky-100/60 text-xs">
+              <div class="flex flex-col"><span class="text-on-surface-variant text-[11px]">Nilai Akhir</span><span class="font-bold text-on-surface">88</span></div>
+              <div class="flex flex-col"><span class="text-on-surface-variant text-[11px]">Organisasi</span><span class="font-semibold text-teal-600">Ya</span></div>
+              <div class="flex flex-col"><span class="text-on-surface-variant text-[11px]">Kehadiran</span><span class="font-bold text-on-surface">82%</span></div>
+            </div>
+            <div class="flex items-center justify-between pt-1 border-t border-slate-100">
+              <span class="text-[11px] font-medium text-on-surface-variant">Keanggotaan:</span>
+              <div class="flex items-center gap-1.5">
+                <span class="px-2 py-0.5 rounded-md bg-sky-100 text-sky-700 font-label-badge font-bold">A</span>
+                <span class="px-2 py-0.5 rounded-md bg-teal-100 text-teal-700 font-label-badge font-bold">B</span>
+                <span class="px-2 py-0.5 rounded-md bg-indigo-100 text-indigo-700 font-label-badge font-bold">C</span>
+              </div>
+            </div>
+          </article>
+          <!-- Mahasiswa 13 -->
+          <article class="student-card flex flex-col p-3.5 rounded-xl bg-white border border-sky-100 shadow-sm gap-3" data-name="Intan Farida" data-nim="25210212" data-sets="A B C">
+            <div class="flex items-start justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-pink-100 text-pink-700 border border-pink-200 flex items-center justify-center font-headline-md font-bold">IF
+                </div>
+                <div class="flex flex-col">
+                  <span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Intan Farida</span>
+                  <span class="font-body-sm text-body-sm text-on-surface-variant">NIM: 25210212</span>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid-cols-3 gap-1.5 py-2 px-2.5 rounded-lg bg-sky-50/70 border border-sky-100/60 text-xs">
+              <div class="flex flex-col"><span class="text-on-surface-variant text-[11px]">Nilai Akhir</span><span class="font-bold text-on-surface">97</span></div>
+              <div class="flex flex-col"><span class="text-on-surface-variant text-[11px]">Organisasi</span><span class="font-semibold text-teal-600">Ya</span></div>
+              <div class="flex flex-col"><span class="text-on-surface-variant text-[11px]">Kehadiran</span><span class="font-bold text-on-surface">98%</span></div>
+            </div>
+            <div class="flex items-center justify-between pt-1 border-t border-slate-100">
+              <span class="text-[11px] font-medium text-on-surface-variant">Keanggotaan:</span>
+              <div class="flex items-center gap-1.5">
+                <span class="px-2 py-0.5 rounded-md bg-sky-100 text-sky-700 font-label-badge font-bold">A</span>
+                <span class="px-2 py-0.5 rounded-md bg-teal-100 text-teal-700 font-label-badge font-bold">B</span>
+                <span class="px-2 py-0.5 rounded-md bg-indigo-100 text-indigo-700 font-label-badge font-bold">C</span>
+              </div>
+            </div>
+          </article>
+          <!-- Mahasiswa 14 -->
+          <article class="student-card flex flex-col p-3.5 rounded-xl bg-white border border-sky-100 shadow-sm gap-3" data-name="Rani Fitri" data-nim="25210013" data-sets="A B C">
+            <div class="flex items-start justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-pink-100 text-pink-700 border border-pink-200 flex items-center justify-center font-headline-md font-bold">RF
+                </div>
+                <div class="flex flex-col">
+                  <span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Rani Fitri</span>
+                  <span class="font-body-sm text-body-sm text-on-surface-variant">NIM: 25210013</span>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid-cols-3 gap-1.5 py-2 px-2.5 rounded-lg bg-sky-50/70 border border-sky-100/60 text-xs">
+              <div class="flex flex-col"><span class="text-on-surface-variant text-[11px]">Nilai Akhir</span><span class="font-bold text-on-surface">85</span></div>
+              <div class="flex flex-col"><span class="text-on-surface-variant text-[11px]">Organisasi</span><span class="font-semibold text-teal-600">tidak</span></div>
+              <div class="flex flex-col"><span class="text-on-surface-variant text-[11px]">Kehadiran</span><span class="font-bold text-on-surface">86%</span></div>
+            </div>
+            <div class="flex items-center justify-between pt-1 border-t border-slate-100">
+              <span class="text-[11px] font-medium text-on-surface-variant">Keanggotaan:</span>
+              <div class="flex items-center gap-1.5">
+                <span class="px-2 py-0.5 rounded-md bg-sky-100 text-sky-700 font-label-badge font-bold">A</span>
+                <span class="px-2 py-0.5 rounded-md bg-slate-100 text-slate-400 font-label-badge line-through">B</span>
+                <span class="px-2 py-0.5 rounded-md bg-indigo-100 text-indigo-700 font-label-badge font-bold">C</span>
+              </div>
+            </div>
+          </article>
+          <!-- Mahasiswa 15 -->
+          <article class="student-card flex flex-col p-3.5 rounded-xl bg-white border border-sky-100 shadow-sm gap-3" data-name="Muhajir Rahman" data-nim="25210142" data-sets="A B C">
+            <div class="flex items-start justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-pink-100 text-pink-700 border border-pink-200 flex items-center justify-center font-headline-md font-bold">MR
+                </div>
+                <div class="flex flex-col">
+                  <span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Muhajir Rahman</span>
+                  <span class="font-body-sm text-body-sm text-on-surface-variant">NIM: 25210142</span>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid-cols-3 gap-1.5 py-2 px-2.5 rounded-lg bg-sky-50/70 border border-sky-100/60 text-xs">
+              <div class="flex flex-col"><span class="text-on-surface-variant text-[11px]">Nilai Akhir</span><span class="font-bold text-on-surface">79</span></div>
+              <div class="flex flex-col"><span class="text-on-surface-variant text-[11px]">Organisasi</span><span class="font-semibold text-teal-600">ya</span></div>
+              <div class="flex flex-col"><span class="text-on-surface-variant text-[11px]">Kehadiran</span><span class="font-bold text-on-surface">81%</span></div>
+            </div>
+            <div class="flex items-center justify-between pt-1 border-t border-slate-100">
+              
+              <span class="text-[11px] font-medium text-on-surface-variant">Keanggotaan:</span>
+              <div class="flex items-center gap-1.5">
+                <span class="px-2 py-0.5 rounded-md bg-slate-100 text-slate-400 font-label-badge line-through">A</span>
+                <span class="px-2 py-0.5 rounded-md bg-teal-100 text-teal-700 font-label-badge font-bold">B</span>
+                <span class="px-2 py-0.5 rounded-md bg-indigo-100 text-indigo-700 font-label-badge font-bold">C</span>
+              </div>
+            </div>
+          </article>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- ==================== HALAMAN 3: HIMPUNAN ==================== -->
+  <div id="page-himpunan" class="page-block hidden">
+    <header class="fixed top-0 w-full z-50 pt-safe bg-surface/90 backdrop-blur-xl border-b border-sky-100 shadow-sm">
+      <div class="h-16 px-4 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <button class="w-11 h-11 flex items-center justify-center rounded-lg text-on-surface-variant hover:bg-sky-50 transition-colors">
+            <span class="material-symbols-outlined text-[24px]">menu</span>
+          </button>
+          <h1 class="font-headline-md text-headline-md text-on-surface tracking-tight select-none">Pembentukan Himpunan</h1>
+        </div>
+        <div class="flex items-center gap-2">
+          <div class="inline-flex items-center px-2.5 py-1 rounded-full bg-sky-50 text-primary font-label-badge border border-sky-100">
+            <span class="w-1.5 h-1.5 rounded-full bg-primary mr-1.5 animate-pulse"></span>
+            <span>6 data</span>
+          </div>
+          <div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center shadow-sm">
+            <span class="material-symbols-outlined text-[18px]">person</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="flex-1 w-full bg-background pt-20 pb-28">
+      <div class="flex flex-col w-full px-4 pb-8 gap-4">
+        <!-- Header Context -->
+        <section class="bg-surface rounded-xl p-4 shadow-sm border border-sky-100 flex flex-col gap-3">
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-sky-50 text-sky-800 font-label-badge border border-sky-200/60">
+              PJBL-A Matematika Diskrit
+            </span>
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 font-label-badge border border-blue-200/60">
+              Logika Predikat Himpunan
+            </span>
+          </div>
+          <div>
+            <h2 class="font-headline-xl-mobile text-headline-xl-mobile text-on-surface tracking-tight">
+              Pembentukan Himpunan
+            </h2>
+            <p class="font-body-md text-body-md text-on-surface-variant mt-1 leading-relaxed">
+              Data mahasiswa diklasifikasikan ke dalam himpunan berdasarkan aturan predikat berikut untuk mengevaluasi relasi himpunan.
+            </p>
+          </div>
+        </section>
+
+        <!-- Topologi Diagram Venn SVG -->
+        <section class="bg-surface rounded-xl p-4 shadow-sm border border-sky-100 flex flex-col gap-3">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary text-[20px]">bubble_chart</span>
+              <span class="font-headline-sm text-headline-sm text-on-surface">Topologi Irisan Himpunan</span>
+            </div>
+            <span class="px-2 py-0.5 rounded-full bg-sky-50 text-primary font-label-badge border border-sky-200">3 Dimensi</span>
+          </div>
+
+          <div class="w-full bg-sky-50/50 rounded-lg p-4 flex flex-col items-center justify-center border border-sky-100">
+            <svg class="w-full max-w-[280px] h-36" fill="none" viewBox="0 0 280 144" xmlns="http://www.w3.org/2000/svg">
+              <rect fill="#FFFFFF" fill-opacity="0.9" height="140" rx="8" stroke="#bae6fd" stroke-width="1" width="276" x="2" y="2"></rect>
+              <text fill="#0369a1" font-family="Plus Jakarta Sans" font-size="11" font-weight="700" x="12" y="18">U (Semesta: 15)</text>
+              <circle cx="110" cy="74" fill="#38bdf8" fill-opacity="0.28" r="48" stroke="#0284c7" stroke-width="1.2"></circle>
+              <text fill="#0369a1" font-family="Plus Jakarta Sans" font-size="11" font-weight="700" x="76" y="58">A (10)</text>
+              <circle cx="170" cy="74" fill="#60a5fa" fill-opacity="0.25" r="48" stroke="#2563eb" stroke-width="1.2"></circle>
+              <text fill="#1d4ed8" font-family="Plus Jakarta Sans" font-size="11" font-weight="700" x="182" y="58">B (11)</text>
+              <circle cx="140" cy="98" fill="#22d3ee" fill-opacity="0.24" r="42" stroke="#0891b2" stroke-width="1.2"></circle>
+              <text fill="#0e7490" font-family="Plus Jakarta Sans" font-size="11" font-weight="700" x="134" y="132">C (11)</text>
+              <circle cx="140" cy="80" fill="#0284c7" fill-opacity="0.3" r="14"></circle>
+              <text fill="#0c4a6e" font-family="Plus Jakarta Sans" font-size="10" font-weight="700" x="134" y="84">15</text>
+            </svg>
+          </div>
+        </section>
+
+        <!-- Uji Keanggotaan Cepat -->
+        <section class="bg-surface rounded-xl p-4 shadow-sm border border-sky-100 flex flex-col gap-2.5">
+          <div class="flex items-center justify-between">
+            <h3 class="font-headline-sm text-headline-sm text-on-surface">Uji Keanggotaan Cepat</h3>
+            <span class="material-symbols-outlined text-primary text-[20px]">spellcheck</span>
+          </div>
+          <select class="w-full h-11 px-3 bg-sky-50/70 border border-sky-200 rounded-lg font-body-sm text-on-surface focus:outline-none" id="studentSelect">
+            <option value="faras">Faras Setia Ansyarullah (Nilai 92, Aktif, Presensi 92%)</option>
+            <option value="yunus">Muhammad Yunus (Nilai 86, Aktif, Presensi 89%)</option>
+            <option value="aris">Aris Akmal (Nilai 93, Pasif, Presensi 93%)</option>
+            <option value="asyhadul">Asyhadul Amin (Nilai 93, Aktif, Presensi 94%)</option>
+            <option value="jelita">Jelita (Nilai 84, Aktif, Presensi 79%)</option>
+            <option value="alda">Aminatun Alda (Nilai 80, pasif, presensi 80%)</option>
+            <option value="alda">Askal Fata (Nilai 78, pasif, presensi 78%)</option>
+            <option value="alda">Iman Zandra (Nilai 79, Aktif, presensi 70&%)</option>
+            <option value="alda">Habibah (Nilai 75, Aktif, presensi 65%)</option>
+            <option value="alda">Era Rizkiani (Nilai 78, Aktif, presensi 76%)</option>
+            <option value="alda">Muhammad Fadhil (Nilai 69, pasif, presensi 87%)</option>
+            <option value="alda">Rindi Saskia (Nilai 88, Aktif, presensi 82%)</option>
+            <option value="alda">Intan Farida (Nilai 97, Aktif, presensi 98%)</option>
+            <option value="alda">Rani Fitri (Nilai 85, pasif, presensi 86%)</option>
+            <option value="alda">Muhajir Rahman (Nilai 79, Aktif, presensi 81%)</option>
+          </select>
+          <div class="p-3 rounded-lg bg-sky-50 border border-sky-200 flex flex-col gap-1" id="predicateResult">
+            <div class="font-body-sm text-body-sm text-on-surface" id="resultContent">
+              <strong>x = Faras Setia Ansyarullah</strong>: P(x)=True &isin; A, Q(x)=True &isin; B, R(x)=True &isin; C. Partisi: <strong>A &#8745; B &#8745; C</strong>.
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- ==================== HALAMAN 4: OPERASI ==================== -->
+  <div id="page-operasi" class="page-block hidden">
+    <header class="fixed top-0 w-full z-50 pt-safe bg-surface/90 backdrop-blur-xl border-b border-sky-100 shadow-sm">
+      <div class="h-16 px-4 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <button class="w-11 h-11 flex items-center justify-center rounded-lg text-on-surface-variant hover:bg-sky-50 transition-colors">
+            <span class="material-symbols-outlined text-[24px]">menu</span>
+          </button>
+          <h1 class="font-headline-md text-headline-md text-on-surface tracking-tight select-none">Operasi Himpunan</h1>
+        </div>
+        <div class="flex items-center gap-2">
+          <div class="inline-flex items-center px-2.5 py-1 rounded-full bg-sky-50 text-primary font-label-badge border border-sky-100">
+            <span class="w-1.5 h-1.5 rounded-full bg-primary mr-1.5 animate-pulse"></span>
+            <span>15 data</span>
+          </div>
+          <div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center shadow-sm">
+            <span class="material-symbols-outlined text-[18px]">person</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="flex-1 w-full bg-background pt-20 pb-28">
+      <div class="flex flex-col w-full px-4 pb-8 gap-4">
+        <section class="bg-surface rounded-xl p-4 shadow-sm border border-sky-100 flex flex-col gap-3">
+          <div class="flex items-center justify-between border-b border-sky-100 pb-2">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary text-[20px]">calculate</span>
+              <h3 class="font-headline-sm text-headline-sm text-on-surface">Pilih Operasi Himpunan</h3>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2.5">
+            <div class="flex flex-col gap-1">
+              <label class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Himpunan Pertama</label>
+              <select class="h-10 px-3 bg-sky-50/70 border border-sky-200 rounded-lg font-headline-sm text-on-surface focus:outline-none" id="opSet1">
+                <option value="A">Himpunan A (Nilai &ge; 80)</option>
+                <option value="B">Himpunan B (Organisasi)</option>
+                <option value="C">Himpunan C (Presensi &ge; 80%)</option>
+              </select>
+            </div>
+            <div class="flex flex-col gap-1">
+              <label class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Himpunan Kedua</label>
+              <select class="h-10 px-3 bg-sky-50/70 border border-sky-200 rounded-lg font-headline-sm text-on-surface focus:outline-none" id="opSet2">
+                <option value="B">Himpunan B (Organisasi)</option>
+                <option value="A">Himpunan A (Nilai &ge; 80)</option>
+                <option value="C">Himpunan C (Presensi &ge; 80%)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Operator Buttons -->
+          <div class="grid grid-cols-5 gap-1.5 pt-1">
+            <button class="op-btn active p-2 rounded-lg bg-primary text-white flex flex-col items-center justify-center gap-0.5 transition-all" data-op="intersect">
+              <span class="font-bold text-[18px]">&#8745;</span>
+              <span class="text-[10px] font-label-md">Irisan</span>
+            </button>
+            <button class="op-btn p-2 rounded-lg bg-sky-50 border border-sky-200 text-sky-800 flex flex-col items-center justify-center gap-0.5 transition-all hover:bg-sky-100" data-op="union">
+              <span class="font-bold text-[18px]">&#8746;</span>
+              <span class="text-[10px] font-label-md">Gabungan</span>
+            </button>
+            <button class="op-btn p-2 rounded-lg bg-sky-50 border border-sky-200 text-sky-800 flex flex-col items-center justify-center gap-0.5 transition-all hover:bg-sky-100" data-op="diff">
+              <span class="font-bold text-[18px]">&#8722;</span>
+              <span class="text-[10px] font-label-md">Selisih</span>
+            </button>
+            <button class="op-btn p-2 rounded-lg bg-sky-50 border border-sky-200 text-sky-800 flex flex-col items-center justify-center gap-0.5 transition-all hover:bg-sky-100" data-op="symdiff">
+              <span class="font-bold text-[18px]">&#8853;</span>
+              <span class="text-[10px] font-label-md">Simetris</span>
+            </button>
+            <button class="op-btn p-2 rounded-lg bg-sky-50 border border-sky-200 text-sky-800 flex flex-col items-center justify-center gap-0.5 transition-all hover:bg-sky-100" data-op="comp">
+              <span class="font-bold text-[18px]">Aᶜ</span>
+              <span class="text-[10px] font-label-md">Komplemen</span>
+            </button>
+          </div>
+
+          <!-- Tombol Jalankan Operasi -->
+          <button id="runOperationBtn" class="mt-2 w-full py-2.5 px-4 rounded-lg bg-primary hover:bg-primary-dark active:scale-[0.99] text-white font-headline-sm shadow-sm flex items-center justify-center gap-2 transition-all">
+            <span class="material-symbols-outlined text-[20px]">play_arrow</span>
+            <span>Jalankan Operasi</span>
+          </button>
+        </section>
+
+        <!-- Result Visualizer Card -->
+        <section id="resultCard" class="bg-surface rounded-xl p-4 shadow-sm border border-sky-100 flex flex-col gap-3 transition-all duration-300">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="px-2.5 py-1 rounded-md bg-sky-100 text-primary font-bold text-headline-sm" id="resultNotated">A &#8745; B</span>
+              <span class="font-headline-sm text-headline-sm text-on-surface" id="resultTitle">Irisan Himpunan A dan B</span>
+            </div>
+            <span class="px-2.5 py-0.5 rounded-full bg-primary text-white font-label-badge font-bold" id="resultCardCount">6 Mahasiswa</span>
+          </div>
+
+          <div class="flex flex-col gap-2">
+            <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Anggota Hasil Operasi:</span>
+            <div class="flex flex-wrap gap-2" id="resultMemberList">
+              <span class="px-2.5 py-1 rounded-lg bg-white border border-sky-200 text-on-surface font-body-sm text-xs font-medium">Faras Setia Ansyarullah</span>
+              <span class="px-2.5 py-1 rounded-lg bg-white border border-sky-200 text-on-surface font-body-sm text-xs font-medium">Aris Akmal</span>
+              <span class="px-2.5 py-1 rounded-lg bg-white border border-sky-200 text-on-surface font-body-sm text-xs font-medium">Asyhadul Amin</span>
+              <span class="px-2.5 py-1 rounded-lg bg-white border border-sky-200 text-on-surface font-body-sm text-xs font-medium">Muhammad Yunus</span>
+              <span class="px-2.5 py-1 rounded-lg bg-white border border-sky-200 text-on-surface font-body-sm text-xs font-medium">Jelita</span>
+              <span class="px-2.5 py-1 rounded-lg bg-white border border-sky-200 text-on-surface font-body-sm text-xs font-medium">Aminatun Alda</span>
+              <span class="px-2.5 py-1 rounded-lg bg-white border border-sky-200 text-on-surface font-body-sm text-xs font-medium">Askal Fata</span>
+              <span class="px-2.5 py-1 rounded-lg bg-white border border-sky-200 text-on-surface font-body-sm text-xs font-medium">Iman Zandra</span>
+              <span class="px-2.5 py-1 rounded-lg bg-white border border-sky-200 text-on-surface font-body-sm text-xs font-medium">Habibah</span>
+              <span class="px-2.5 py-1 rounded-lg bg-white border border-sky-200 text-on-surface font-body-sm text-xs font-medium">Era Rizkiani</span>
+              <span class="px-2.5 py-1 rounded-lg bg-white border border-sky-200 text-on-surface font-body-sm text-xs font-medium">Muhammad Fadhil</span>
+              <span class="px-2.5 py-1 rounded-lg bg-white border border-sky-200 text-on-surface font-body-sm text-xs font-medium">Rindi Saskia</span>
+              <span class="px-2.5 py-1 rounded-lg bg-white border border-sky-200 text-on-surface font-body-sm text-xs font-medium">Intan Farida</span>
+              <span class="px-2.5 py-1 rounded-lg bg-white border border-sky-200 text-on-surface font-body-sm text-xs font-medium">Rani Fitri</span>
+              <span class="px-2.5 py-1 rounded-lg bg-white border border-sky-200 text-on-surface font-body-sm text-xs font-medium">Muhajir Rahman</span>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- ==================== HALAMAN 5: TENTANG ==================== -->
+  <div id="page-tentang" class="page-block hidden">
+    <header class="fixed top-0 w-full z-50 pt-safe bg-surface/90 backdrop-blur-xl border-b border-sky-100 shadow-sm">
+      <div class="h-16 px-4 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <button class="w-11 h-11 flex items-center justify-center rounded-lg text-on-surface-variant hover:bg-sky-50 transition-colors">
+            <span class="material-symbols-outlined text-[24px]">menu</span>
+          </button>
+          <h1 class="font-headline-md text-headline-md text-on-surface tracking-tight select-none">Tentang Aplikasi</h1>
+        </div>
+        <div class="flex items-center gap-2">
+          <div class="inline-flex items-center px-2.5 py-1 rounded-full bg-sky-50 text-primary font-label-badge border border-sky-100">
+            <span class="w-1.5 h-1.5 rounded-full bg-primary mr-1.5 animate-pulse"></span>
+            <span>v1.0.0</span>
+          </div>
+          <div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center shadow-sm">
+            <span class="material-symbols-outlined text-[18px]">person</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="flex-1 w-full bg-background pt-20 pb-28">
+      <div class="flex flex-col w-full px-4 pb-8 gap-4">
+        <section class="bg-gradient-to-br from-sky-600 to-primary-dark rounded-2xl p-5 text-white shadow-md flex flex-col gap-3 relative overflow-hidden">
+          <div class="flex items-center gap-2">
+            <span class="px-2.5 py-0.5 rounded-full bg-white/20 text-white text-label-badge font-label-badge">
+              PJBL-A Matematika Diskrit
+            </span>
+          </div>
+          <div>
+            <h2 class="font-headline-xl text-headline-xl text-white font-bold tracking-tight">SetClassify</h2>
+            <p class="font-body-sm text-body-sm text-sky-100 mt-1 leading-relaxed">
+              Aplikasi berbasis web interaktif untuk visualisasi dan kalkulasi klasifikasi himpunan mahasiswa berbasis logika predikat.
+            </p>
+          </div>
+        </section>
+
+        <!-- Team Members (6 Orang Kelompok) -->
+        <section class="flex flex-col gap-3">
+          <div class="flex items-center justify-between px-1">
+            <h3 class="font-headline-sm text-headline-sm text-on-surface">Tim Pengembang (6 Anggota)</h3>
+            <span class="font-label-badge text-primary bg-sky-50 px-2 py-0.5 rounded-full border border-sky-100">Kelompok PJBL-A</span>
+          </div>
+          <div class="grid grid-cols-1 gap-2.5">
+            <article class="bg-surface rounded-xl p-3 shadow-sm border border-sky-100 flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-sky-100 text-primary border border-sky-200 flex items-center justify-center font-bold shrink-0">FSA</div>
+              <div class="flex flex-col min-w-0 flex-1">
+                <span class="font-headline-sm text-on-surface font-bold truncate">Faras Setia Ansyarullah</span>
+                <span class="font-mono text-body-sm text-on-surface-variant">NIM: 25210233</span>
+              </div>
+            </article>
+
+            <article class="bg-surface rounded-xl p-3 shadow-sm border border-sky-100 flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-blue-100 text-blue-700 border border-blue-200 flex items-center justify-center font-bold shrink-0">AA</div>
+              <div class="flex flex-col min-w-0 flex-1">
+                <span class="font-headline-sm text-on-surface font-bold truncate">Aris Akmal</span>
+                <span class="font-mono text-body-sm text-on-surface-variant">NIM: 25210080</span>
+              </div>
+            </article>
+
+            <article class="bg-surface rounded-xl p-3 shadow-sm border border-sky-100 flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-indigo-100 text-indigo-700 border border-indigo-200 flex items-center justify-center font-bold shrink-0">AA</div>
+              <div class="flex flex-col min-w-0 flex-1">
+                <span class="font-headline-sm text-on-surface font-bold truncate">Asyhadul Amin</span>
+                <span class="font-mono text-body-sm text-on-surface-variant">NIM: 25210113</span>
+              </div>
+            </article>
+
+            <article class="bg-surface rounded-xl p-3 shadow-sm border border-sky-100 flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200 flex items-center justify-center font-bold shrink-0">MY</div>
+              <div class="flex flex-col min-w-0 flex-1">
+                <span class="font-headline-sm text-on-surface font-bold truncate">Muhammad Yunus</span>
+                <span class="font-mono text-body-sm text-on-surface-variant">NIM: 25210032</span>
+              </div>
+            </article>
+
+            <article class="bg-surface rounded-xl p-3 shadow-sm border border-sky-100 flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-purple-100 text-purple-700 border border-purple-200 flex items-center justify-center font-bold shrink-0">AA</div>
+              <div class="flex flex-col min-w-0 flex-1">
+                <span class="font-headline-sm text-on-surface font-bold truncate">Aminatun Alda</span>
+                <span class="font-mono text-body-sm text-on-surface-variant">NIM: 25210126</span>
+              </div>
+            </article>
+
+            <article class="bg-surface rounded-xl p-3 shadow-sm border border-sky-100 flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-pink-100 text-pink-700 border border-pink-200 flex items-center justify-center font-bold shrink-0">J</div>
+              <div class="flex flex-col min-w-0 flex-1">
+                <span class="font-headline-sm text-on-surface font-bold truncate">Jelita</span>
+                <span class="font-mono text-body-sm text-on-surface-variant">NIM: 25210021</span>
+              </div>
+            </article>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- Bottom Navigation Bar -->
+  <nav class="fixed bottom-0 w-full z-50 pb-safe bg-white/95 backdrop-blur-xl border-t border-slate-200 shadow-lg">
+    <div class="h-16 px-1 grid grid-cols-5 items-center">
+      <button onclick="navigateTo('dashboard')" id="nav-dashboard" class="nav-item flex flex-col items-center justify-center h-full gap-0.5 text-sky-600 font-bold">
+        <span class="material-symbols-outlined text-[22px]">dashboard</span>
+        <span class="font-label-md text-label-md">Dashboard</span>
+      </button>
+      <button onclick="navigateTo('dataset')" id="nav-dataset" class="nav-item flex flex-col items-center justify-center h-full gap-0.5 text-slate-400 hover:text-sky-600">
+        <span class="material-symbols-outlined text-[22px]">table_chart</span>
+        <span class="font-label-md text-label-md">Dataset</span>
+      </button>
+      <button onclick="navigateTo('himpunan')" id="nav-himpunan" class="nav-item flex flex-col items-center justify-center h-full gap-0.5 text-slate-400 hover:text-sky-600">
+        <span class="material-symbols-outlined text-[22px]">hub</span>
+        <span class="font-label-md text-label-md">Himpunan</span>
+      </button>
+      <button onclick="navigateTo('operasi')" id="nav-operasi" class="nav-item flex flex-col items-center justify-center h-full gap-0.5 text-slate-400 hover:text-sky-600">
+        <span class="material-symbols-outlined text-[22px]">calculate</span>
+        <span class="font-label-md text-label-md">Operasi</span>
+      </button>
+      <button onclick="navigateTo('tentang')" id="nav-tentang" class="nav-item flex flex-col items-center justify-center h-full gap-0.5 text-slate-400 hover:text-sky-600">
+        <span class="material-symbols-outlined text-[22px]">info</span>
+        <span class="font-label-md text-label-md">Tentang</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- JavaScript Single-Engine Router & Operations Calculator -->
+  <script>
+    // Tab Navigation
+    function navigateTo(pageId) {
+      document.querySelectorAll('.page-block').forEach(page => page.classList.add('hidden'));
+      const targetPage = document.getElementById(`page-${pageId}`);
+      if (targetPage) targetPage.classList.remove('hidden');
+
+      document.querySelectorAll('.nav-item').forEach(nav => {
+        nav.classList.remove('text-sky-600', 'font-bold');
+        nav.classList.add('text-slate-400');
+      });
+
+      const activeNav = document.getElementById(`nav-${pageId}`);
+      if (activeNav) {
+        activeNav.classList.remove('text-slate-400');
+        activeNav.classList.add('text-sky-600', 'font-bold');
+      }
+    }
+
+    // Dataset Filter & Search Handler
+    (function initDatasetFilter() {
+      const searchInput = document.getElementById('search-input');
+      const filterChips = document.querySelectorAll('.filter-chip');
+      const studentCards = document.querySelectorAll('.student-card');
+      let currentFilter = 'all';
+
+      function filterData() {
+        const query = (searchInput?.value || '').toLowerCase().trim();
+        studentCards.forEach(card => {
+          const name = (card.getAttribute('data-name') || '').toLowerCase();
+          const nim = (card.getAttribute('data-nim') || '').toLowerCase();
+          const sets = (card.getAttribute('data-sets') || '').split(' ');
+
+          const matchesSearch = name.includes(query) || nim.includes(query);
+          const matchesFilter = currentFilter === 'all' || sets.includes(currentFilter);
+
+          if (matchesSearch && matchesFilter) card.classList.remove('hidden');
+          else card.classList.add('hidden');
+        });
+      }
+
+      filterChips.forEach(chip => {
+        chip.addEventListener('click', () => {
+          filterChips.forEach(c => {
+            c.classList.remove('bg-primary', 'text-white');
+            c.classList.add('bg-white');
+          });
+          chip.classList.add('bg-primary', 'text-white');
+          chip.classList.remove('bg-white');
+          currentFilter = chip.getAttribute('data-filter') || 'all';
+          filterData();
+        });
+      });
+
+      if (searchInput) searchInput.addEventListener('input', filterData);
+    })();
+
+    // Interactive Operations Calculator Handler (Dipicu untuk 15 Data)
+    (function initSetCalculator() {
+      const opBtns = document.querySelectorAll('.op-btn');
+      const set1Select = document.getElementById('opSet1');
+      const set2Select = document.getElementById('opSet2');
+      const runOperationBtn = document.getElementById('runOperationBtn');
+      const resultCard = document.getElementById('resultCard');
+      const resultNotated = document.getElementById('resultNotated');
+      const resultTitle = document.getElementById('resultTitle');
+      const resultCardCount = document.getElementById('resultCardCount');
+      const resultMemberList = document.getElementById('resultMemberList');
+
+      let currentOp = 'intersect';
+      const dataset = {
+        A: ['Faras Setia Ansyarullah', 'Aris Akmal', 'Asyhadul Amin', 'Muhammad Yunus', 'Aminatun Alda', 'Jelita', 'Askal Fata', 'Iman Zandra', 'Habibah', 'Era Rizkiani', 'Muhammad Fadhil', 'Rindi Saskia', 'Intan Farida', 'Muhajir Rahman'],
+        B: ['Faras Setia Ansyarullah', 'Asyhadul Amin', 'Muhammad Yunus', 'Jelita', 'Aminatun Alda', 'Iman Zandra', 'Habibah', 'Era Rizkiani', 'Rindi Saskia', 'Intan Farida', 'Muhajir Rahman'],
+        C: ['Faras Setia Ansyarullah', 'Aris Akmal', 'Asyhadul Amin', 'Muhammad Yunus', 'Aminatun Alda', 'Askal Fata', 'Muhammad Fadhil', 'Rindi Saskia', 'Intan Farida', 'Rani Fitri', 'Muhajir Rahman'],
+        U: ['Faras Setia Ansyarullah', 'Aris Akmal', 'Asyhadul Amin', 'Muhammad Yunus', 'Jelita', 'Aminatun Alda']
+      };
+
+      function calculateOperation() {
+        const s1Key = set1Select?.value || 'A';
+        const s2Key = set2Select?.value || 'B';
+        const s1 = dataset[s1Key] || [];
+        const s2 = dataset[s2Key] || [];
+        const u = dataset['U'];
+
+        let res = [];
+        let symbol = '&#8745;';
+        let titleStr = '';
+
+        if (currentOp === 'intersect') {
+          symbol = `${s1Key} &#8745; ${s2Key}`;
+          titleStr = `Irisan Himpunan ${s1Key} dan ${s2Key}`;
+          res = s1.filter(x => s2.includes(x));
+        } else if (currentOp === 'union') {
+          symbol = `${s1Key} &#8746; ${s2Key}`;
+          titleStr = `Gabungan Himpunan ${s1Key} dan ${s2Key}`;
+          res = Array.from(new Set([...s1, ...s2]));
+        } else if (currentOp === 'diff') {
+          symbol = `${s1Key} &#8722; ${s2Key}`;
+          titleStr = `Selisih Himpunan ${s1Key} dan ${s2Key}`;
+          res = s1.filter(x => !s2.includes(x));
+        } else if (currentOp === 'symdiff') {
+          symbol = `${s1Key} &#8853; ${s2Key}`;
+          titleStr = `Beda Setangkai ${s1Key} dan ${s2Key}`;
+          const part1 = s1.filter(x => !s2.includes(x));
+          const part2 = s2.filter(x => !s1.includes(x));
+          res = [...part1, ...part2];
+        } else if (currentOp === 'comp') {
+          symbol = `${s1Key}ᶜ`;
+          titleStr = `Komplemen Himpunan ${s1Key}`;
+          res = u.filter(x => !s1.includes(x));
+        }
+
+        if (resultNotated) resultNotated.innerHTML = symbol;
+        if (resultTitle) resultTitle.textContent = titleStr;
+        if (resultCardCount) resultCardCount.textContent = `${res.length} Mahasiswa`;
+
+        if (resultMemberList) {
+          if (res.length === 0) {
+            resultMemberList.innerHTML = `<span class="text-xs text-slate-500 font-mono">&#8709; (Himpunan Kosong)</span>`;
+          } else {
+            resultMemberList.innerHTML = res.map(name => `
+              <span class="px-2.5 py-1 rounded-lg bg-white border border-sky-200 text-on-surface font-body-sm text-xs font-medium shadow-xs">${name}</span>
+            `).join('');
+          }
+        }
+
+        // Efek animasi highlight pada kartu hasil
+        if (resultCard) {
+          resultCard.classList.add('ring-2', 'ring-primary', 'bg-sky-50/50');
+          setTimeout(() => {
+            resultCard.classList.remove('ring-2', 'ring-primary', 'bg-sky-50/50');
+          }, 300);
+        }
+      }
+
+      opBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          opBtns.forEach(b => {
+            b.classList.remove('bg-primary', 'text-white', 'active');
+            b.classList.add('bg-sky-50', 'text-sky-800');
+          });
+          btn.classList.add('bg-primary', 'text-white', 'active');
+          btn.classList.remove('bg-sky-50', 'text-sky-800');
+          currentOp = btn.getAttribute('data-op') || 'intersect';
+          calculateOperation();
+        });
+      });
+
+      if (set1Select) set1Select.addEventListener('change', calculateOperation);
+      if (set2Select) set2Select.addEventListener('change', calculateOperation);
+      if (runOperationBtn) runOperationBtn.addEventListener('click', calculateOperation);
+    })();
+  </script>
+</body>
+</html>
